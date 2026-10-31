@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sufi Kebab — Wieluń | The Real Taste of Kebab</title>
+<meta name="description" content="Sufi Kebab Wieluń — fresh meat straight off the grill, sauces made in-house, delivery in 35–60 min. Rated 4.6. Order today!">
+<link rel="icon" type="image/png" href="assets/logo-badge.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Brand palette sampled from the official Sufi Kebab logo (Facebook DP) */
+  --green:#175933; --green-deep:#0d3d21; --green-soft:#e2ecdf;
+  --red:#be202f; --red-bright:#d92332;
+  --cream:#f7f2e3; --cream2:#efe7d2; --paper:#fffdf4;
+  --brown:#3a322b; --ink:#2b251f; --muted:#7d6f5b; --line:#ddd2ba;
+  --disp:'Bebas Neue',sans-serif; --body:'Manrope',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--cream);color:var(--ink);font-family:var(--body);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1200px,92vw);margin:0 auto}
+h1,h2{font-family:var(--disp);font-weight:400;letter-spacing:.02em;line-height:.95}
+.tag{display:inline-flex;align-items:center;gap:.5rem;color:var(--red);font-weight:800;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase}
+.tag::before{content:"";width:34px;height:2px;background:var(--green)}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 1.7rem;border-radius:999px;font-weight:800;font-size:.95rem;transition:transform .3s,box-shadow .3s;will-change:transform}
+.btn-red{background:linear-gradient(120deg,var(--red),var(--red-bright));color:#fff;box-shadow:0 12px 30px rgba(190,32,47,.32)}
+.btn-red:hover{transform:translateY(-3px);box-shadow:0 18px 38px rgba(190,32,47,.4)}
+.btn-green{background:var(--green);color:#fff;box-shadow:0 12px 30px rgba(23,89,51,.3)}
+.btn-green:hover{transform:translateY(-3px)}
+.btn-ghost{border:1.5px solid #b7a888;color:var(--brown);background:rgba(255,253,244,.6)}
+.btn-ghost:hover{transform:translateY(-3px);border-color:var(--green)}
+/* scroll progress */
+#progress{position:fixed;top:0;left:0;height:4px;width:100%;z-index:90;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--green),var(--red))}
+/* header */
+header{position:fixed;inset:0 0 auto 0;z-index:60;transition:background .35s,padding .35s,box-shadow .35s;padding:.8rem 0}
+header.scrolled{background:rgba(247,242,227,.92);backdrop-filter:blur(12px);padding:.45rem 0;box-shadow:0 8px 30px rgba(58,50,43,.12);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo img{height:60px;width:auto}
+.nav nav{display:flex;gap:2rem;font-weight:700;font-size:.92rem}
+.nav nav a{opacity:.8;transition:.25s;position:relative}
+.nav nav a:hover{opacity:1;color:var(--green)}
+.nav .btn{padding:.7rem 1.3rem}
+.lang-switch{display:flex;border:1.5px solid var(--line);border-radius:999px;overflow:hidden;background:var(--paper);flex:none}
+.lang-switch a{padding:.42rem .8rem;font-weight:800;font-size:.8rem;letter-spacing:.05em;color:var(--muted);line-height:1}
+.lang-switch a.on{background:var(--green);color:#fff}
+.lang-switch a:not(.on):hover{color:var(--green)}
+@media(max-width:860px){.nav nav{display:none}.logo img{height:48px}.nav .btn{padding:.62rem 1.05rem;font-size:.85rem;white-space:nowrap}.lang-switch a{padding:.38rem .6rem;font-size:.74rem}.nav{gap:.6rem}}
+/* hero */
+.hero{position:relative;padding:9rem 0 5.5rem;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(900px 520px at 88% 12%,rgba(23,89,51,.14),transparent 60%),radial-gradient(760px 520px at 4% 92%,rgba(190,32,47,.10),transparent 60%)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center}
+.hero h1{font-size:clamp(3.6rem,8.5vw,7.2rem);color:var(--brown)}
+.hero h1 .c-red{color:var(--red)} .hero h1 .c-green{color:var(--green)}
+.hero p.lead{margin:1.3rem 0 2rem;color:var(--muted);font-size:1.13rem;line-height:1.65;max-width:34rem}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+.hero-badges{display:flex;gap:2.2rem;margin-top:2.6rem;flex-wrap:wrap}
+.hbadge b{font-family:var(--disp);font-size:1.9rem;color:var(--green);display:block;letter-spacing:.03em}
+.hbadge:nth-child(2) b{color:var(--red)} .hbadge:nth-child(3) b{color:var(--brown)}
+.hbadge span{color:var(--muted);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.hero-img{position:relative}
+.hero-img .frame{border-radius:26px;overflow:hidden;border:6px solid #fff;box-shadow:0 40px 80px rgba(58,50,43,.35);transform:rotate(2deg)}
+.hero-img .frame img{width:100%;height:560px;object-fit:cover;will-change:transform}
+.hero-logo-badge{position:absolute;top:-38px;right:-16px;width:104px;height:104px;filter:drop-shadow(0 14px 24px rgba(58,50,43,.35))}
+.chip{position:absolute;background:rgba(255,253,244,.94);border:1px solid var(--line);padding:.6rem 1rem;border-radius:999px;font-weight:800;font-size:.85rem;display:flex;gap:.5rem;align-items:center;box-shadow:0 14px 30px rgba(58,50,43,.22);color:var(--brown)}
+.chip1{top:52px;left:-26px}.chip2{bottom:52px;right:-12px}.chip3{bottom:-16px;left:34px}
+@media(max-width:920px){.hero .wrap{grid-template-columns:1fr}.hero-img .frame img{height:400px}.chip1{left:6px}.hero{padding-top:7.5rem}.hero-badges{gap:1.4rem}}
+/* marquee */
+.marquee{background:var(--green);transform:rotate(-1.3deg) scale(1.02);padding:.95rem 0;overflow:hidden;white-space:nowrap;box-shadow:0 14px 34px rgba(23,89,51,.25)}
+.marquee .track{display:inline-flex;gap:2.6rem;will-change:transform}
+.marquee span{font-family:var(--disp);font-size:1.35rem;letter-spacing:.14em;color:var(--cream);display:inline-flex;gap:2.6rem;align-items:center}
+.marquee span i{font-style:normal;color:#ffb3ba}
+/* sections */
+section{padding:6.2rem 0;position:relative}
+.sec-head{max-width:44rem;margin-bottom:3rem}
+.sec-head h2{font-size:clamp(2.5rem,5.4vw,4.2rem);margin:.7rem 0 .8rem;color:var(--brown)}
+.sec-head p{color:var(--muted);line-height:1.65}
+.head-line{width:74px;height:4px;border-radius:4px;background:linear-gradient(90deg,var(--green),var(--red));transform-origin:0 50%}
+/* about */
+.about .wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:3.4rem;align-items:center}
+.about-img{border-radius:24px;overflow:hidden;position:relative;border:6px solid #fff;box-shadow:0 30px 60px rgba(58,50,43,.25)}
+.about-img img{height:520px;width:100%;object-fit:cover;will-change:transform}
+.about-img::after{content:"OFF THE GRILL — STRAIGHT TO YOUR PLATE";position:absolute;left:18px;bottom:18px;background:rgba(255,253,244,.92);padding:.55rem 1rem;border-radius:10px;font-weight:800;font-size:.75rem;letter-spacing:.16em;color:var(--green)}
+.about p{color:var(--muted);line-height:1.75;margin-bottom:1.1rem}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:1.2rem;box-shadow:0 10px 26px rgba(58,50,43,.07)}
+.stat b{font-family:var(--disp);font-size:2.55rem;line-height:1;color:var(--green);display:block}
+.stat .count{font:inherit;color:inherit}
+.stat:nth-child(2) b{color:var(--red)}
+.stat>span{color:var(--muted);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+@media(max-width:920px){.about .wrap{grid-template-columns:1fr}}
+</style>
+</head>
+<body class="loading">
+<div id="progress"></div>
+<!-- PRELOADER: spinning badge + two doors -->
+<div id="loader" aria-hidden="true">
+  <div class="ldoor ldoor-l"></div><div class="ldoor ldoor-r"></div>
+  <div class="load-core">
+    <img class="load-badge" src="assets/logo-badge.png" alt="">
+    <div class="load-name">SUFI KEBAB</div>
+    <div class="load-sub">WIELUŃ • WELCOME</div>
+    <div class="load-bar"><i></i></div>
+  </div>
+</div>
+
+
+<header id="header">
+  <div class="wrap nav">
+    <a class="logo" href="#start" aria-label="Sufi Kebab Wieluń"><img src="assets/logo.png" alt="Sufi Kebab — logo"></a>
+    <nav>
+      <a href="#onas">About us</a><a href="#menu">Menu</a><a href="#kreator">Builder</a><a href="#zbliska">Up close</a><a href="#dostawa">Delivery</a><a href="#historia">How we make it</a><a href="#galeria">Gallery</a><a href="#kontakt">Contact</a>
+    </nav>
+    <div class="lang-switch" aria-label="Language"><a href="index.html">PL</a><a href="en.html" class="on" aria-current="true">EN</a></div>
+    <a class="btn btn-red" href="#kontakt">☎ Order now</a>
+  </div>
+</header>
+
+<!-- 1. HERO -->
+<section class="hero" id="start">
+  <div class="hero-bg" data-parallax="0.25"></div>
+  <div class="wrap">
+    <div>
+      <span class="tag" data-reveal>Wieluń • Kebab • Grill</span>
+      <h1 aria-label="The real taste of kebab, straight from the fire"><span class="wline">THE REAL</span><br><span class="wline">TASTE OF <span class="c-red">KEBAB</span></span><br><span class="wline c-green">STRAIGHT FROM THE FIRE</span></h1>
+      <p class="lead" data-reveal>Meat sliced straight off the grill, vegetables chopped fresh and sauces we make ourselves every day. That is why Wieluń has been coming back to us for years.</p>
+      <div class="hero-cta" data-reveal>
+        <a class="btn btn-red" href="#menu">See the menu ↓</a>
+        <a class="btn btn-ghost" href="https://facebook.com/7starwielun" target="_blank" rel="noopener">Facebook — 20k fans</a>
+      </div>
+      <div class="hero-badges" data-reveal>
+        <div class="hbadge"><b>★ 4.6</b><span>Pyszne.pl rating</span></div>
+        <div class="hbadge"><b>35–60 min</b><span>delivery</span></div>
+        <div class="hbadge"><b>20,000+</b><span>Facebook fans</span></div>
+      </div>
+    </div>
+    <div class="hero-img">
+      <div class="frame" id="heroFrame"><img src="assets/dish-talerz.jpg" alt="Sufi Platter — a real photo from our kitchen" id="heroImg"></div>
+      <img class="hero-logo-badge" id="heroBadge" src="assets/logo-badge.png" alt="">
+      <div class="chip chip1">🔥 Fresh off the grill</div>
+      <div class="chip chip2">🥙 Our own sauces</div>
+      <div class="chip chip3">⭐ Wieluń favourite</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. MARQUEE -->
+<div class="marquee" aria-hidden="true"><div class="track" id="marqueeTrack"></div></div>
+
+<!-- 3. ABOUT -->
+<section class="about" id="onas">
+  <div class="wrap">
+    <div class="about-img" data-reveal><img src="assets/chef.webp" alt="Chef slicing meat off the vertical grill" data-inner-parallax loading="lazy"></div>
+    <div>
+      <span class="tag" data-reveal>About us</span>
+      <div class="sec-head" style="margin-bottom:1.4rem"><h2 data-reveal>KEBAB IS OUR<br>PASSION, NOT FAST FOOD</h2><div class="head-line" data-line></div></div>
+      <p data-reveal>At Sufi Kebab, every day starts the same way: marinating the meat, chopping fresh vegetables and preparing sauces from our own recipe. No shortcuts and no frozen food.</p>
+      <p data-reveal>Order the classics with us — in a bun or a tortilla, a filling platter, a takeaway box and veggie versions with falafel. Dine in, takeaway or delivered to your door.</p>
+      <div class="stats">
+        <div class="stat" data-reveal><b><span class="count" data-to="4.6" data-dec="1">0</span></b><span>average rating</span></div>
+        <div class="stat" data-reveal><b><span class="count" data-to="20">0</span>k</b><span>fans on FB</span></div>
+        <div class="stat" data-reveal><b><span class="count" data-to="100">0</span>%</b><span>fresh ingredients</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* menu */
+.menu-sec{background:var(--paper)}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:.4rem 4rem}
+.mitem{display:flex;gap:1.1rem;padding:1.15rem .6rem;border-bottom:1px dashed #cfc2a4;align-items:baseline;border-radius:10px;transition:transform .3s,background .3s}
+.mitem:hover{transform:translateX(8px);background:var(--cream)}
+.mitem .no{font-family:var(--disp);color:var(--green);font-size:1.05rem;min-width:2rem}
+.mitem h3{font-size:1.06rem;font-weight:800;color:var(--brown)}
+.mitem p{color:var(--muted);font-size:.9rem;line-height:1.5;margin-top:.25rem}
+.mitem .price{margin-left:auto;font-family:var(--disp);font-size:1.45rem;color:var(--red);white-space:nowrap}
+.menu-feat{margin-top:3rem;border-radius:24px;overflow:hidden;position:relative;border:6px solid #fff;box-shadow:0 30px 60px rgba(58,50,43,.25)}
+.menu-feat img{width:100%;height:400px;object-fit:cover;will-change:transform}
+.menu-feat .cap{position:absolute;inset:auto 0 0 0;padding:3.2rem 2rem 1.6rem;background:linear-gradient(transparent,rgba(24,18,12,.92));display:flex;justify-content:space-between;align-items:end;gap:1rem;flex-wrap:wrap}
+.menu-feat h3{font-family:var(--disp);font-size:2.2rem;color:#fff}
+.menu-feat p{color:#efe6d2}
+@media(max-width:860px){.menu-grid{grid-template-columns:1fr}}
+/* pinned story — deep brand green */
+.story{background:var(--green-deep);color:var(--cream);overflow:hidden}
+.story .tag{color:#ffb3ba}.story .tag::before{background:var(--red-bright)}
+.story-pin{min-height:100vh;display:flex;align-items:center;padding:5rem 0}
+.story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:3.4rem;align-items:center;width:min(1200px,92vw)}
+.story-steps{display:flex;flex-direction:column;gap:2.4rem;margin-top:2.2rem}
+.step{opacity:.25;transform:translateX(0);transition:opacity .45s}
+.step.on{opacity:1}
+.step .k{font-family:var(--disp);font-size:3.4rem;color:transparent;-webkit-text-stroke:1.5px #ffb3ba;line-height:1}
+.step h3{font-family:var(--disp);font-size:2rem;margin:.4rem 0 .5rem;color:#fff}
+.step p{color:#cfdcc9;line-height:1.65;max-width:26rem}
+.story-visual{position:relative;height:520px;border-radius:24px;overflow:hidden;border:6px solid rgba(255,253,244,.16)}
+.story-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;will-change:transform,opacity}
+.story-visual img:first-child{opacity:1}
+.story-dots{display:flex;gap:.5rem;margin-top:2.4rem}
+.story-dots i{width:34px;height:5px;border-radius:5px;background:rgba(247,242,227,.25);transition:background .4s}
+.story-dots i.on{background:var(--red-bright)}
+@media(max-width:920px){.story .wrap{grid-template-columns:1fr}.story-visual{height:320px}}
+/* specials */
+.deals{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+.deal{border-radius:22px;padding:2.2rem;position:relative;overflow:hidden;color:#fff;transition:transform .35s}
+.deal:hover{transform:translateY(-6px)}
+.deal-a{background:linear-gradient(130deg,#8f1622,var(--red) 55%,var(--red-bright))}
+.deal-b{background:linear-gradient(130deg,var(--green-deep),var(--green) 60%,#22733f)}
+.deal .off{font-family:var(--disp);font-size:3.6rem;color:#ffe9a8;line-height:1}
+.deal h3{font-family:var(--disp);font-size:1.9rem;margin:.5rem 0 .6rem}
+.deal p{color:#f3e9d5;line-height:1.6;max-width:24rem}
+@media(max-width:860px){.deals{grid-template-columns:1fr}}
+/* gallery — infinite loop */
+.gal-mask{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.gal-track{display:flex;gap:1.2rem;width:max-content;will-change:transform;padding:.4rem 0}
+.gal-track figure{min-width:min(430px,82vw);border-radius:20px;overflow:hidden;position:relative;border:5px solid #fff;box-shadow:0 18px 40px rgba(58,50,43,.18)}
+.gal-track img{height:320px;width:100%;object-fit:cover;transition:transform .6s}
+.gal-track figure:hover img{transform:scale(1.06)}
+.gal-track figcaption{position:absolute;left:16px;bottom:14px;background:rgba(255,253,244,.92);padding:.45rem .9rem;border-radius:9px;font-weight:800;font-size:.82rem;color:var(--brown)}
+/* reviews */
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
+.rev{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:1.8rem;box-shadow:0 12px 30px rgba(58,50,43,.07);transition:transform .35s}
+.rev:hover{transform:translateY(-6px)}
+.rev .stars{color:var(--red);letter-spacing:.25em;margin-bottom:1rem}
+.rev p{line-height:1.7;color:#5c5041}
+.rev b{display:block;margin-top:1.2rem;color:var(--brown)}
+.rev span{color:var(--muted);font-size:.85rem}
+@media(max-width:920px){.rev-grid{grid-template-columns:1fr}}
+/* contact */
+.contact-sec{background:var(--cream2)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.6rem}
+.cbox{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:2.2rem}
+.cbox h3{font-family:var(--disp);font-size:1.8rem;margin-bottom:1.2rem;color:var(--brown)}
+.crow{display:flex;justify-content:space-between;padding:.85rem 0;border-bottom:1px dashed #cfc2a4;font-weight:600;gap:1rem}
+.crow span:first-child{color:var(--muted)}
+.map{border-radius:22px;overflow:hidden;border:6px solid #fff;box-shadow:0 24px 50px rgba(58,50,43,.2);min-height:380px}
+.map iframe{width:100%;height:100%;min-height:380px;border:0}
+.big-cta{margin-top:3rem;background:linear-gradient(110deg,var(--red),var(--red-bright));border-radius:26px;padding:3rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;box-shadow:0 30px 60px rgba(190,32,47,.3)}
+.big-cta h2{font-size:clamp(2.4rem,5vw,3.8rem);color:#fff}
+.big-cta .btn{background:#fff;color:var(--red);box-shadow:0 14px 34px rgba(0,0,0,.25)}
+@media(max-width:920px){.contact-grid{grid-template-columns:1fr}}
+footer{background:var(--brown);color:#e9dfca;padding:2.8rem 0}
+.foot{display:flex;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;align-items:center;font-size:.92rem}
+.foot img{height:74px;width:auto;background:#fff;border-radius:14px;padding:6px}
+.foot a{color:#ffb3ba;font-weight:800}
+.call-fab{position:fixed;right:18px;bottom:18px;z-index:70;background:linear-gradient(120deg,var(--red),var(--red-bright));color:#fff;font-weight:800;padding:1rem 1.5rem;border-radius:999px;box-shadow:0 16px 40px rgba(190,32,47,.45);display:none;transform:translateY(180%);transition:transform .45s}
+@media(max-width:860px){.call-fab{display:inline-flex}}
+
+/* --- v3: Z BLISKA (closer look) --- */
+.look-sec{background:linear-gradient(180deg,var(--cream),var(--cream2))}
+.look{display:grid;grid-template-columns:.92fr 1.08fr;gap:2.2rem;background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:2rem;box-shadow:0 30px 60px rgba(58,50,43,.12)}
+.look-list{display:flex;flex-direction:column;gap:.7rem;align-content:start}
+.litem{text-align:left;background:var(--cream);border:1.5px solid var(--line);border-radius:16px;padding:1rem 1.15rem;cursor:pointer;font-family:var(--body);transition:border-color .25s,background .25s;width:100%}
+.litem:hover{border-color:var(--green)}
+.litem.on{background:#fff;border-color:var(--green);box-shadow:0 12px 26px rgba(23,89,51,.14)}
+.lhead{display:flex;align-items:center;gap:.7rem;font-weight:800;font-size:1.02rem;color:var(--brown)}
+.lx{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;font-size:1.05rem;font-weight:800;transition:transform .35s;flex:none}
+.litem.on .lx{transform:rotate(45deg);background:var(--red)}
+.lp{display:none;color:var(--muted);line-height:1.6;margin-top:.6rem;font-size:.94rem}
+.litem.on .lp{display:block}
+.look-view{position:relative;border-radius:20px;overflow:hidden;min-height:420px;background:#14100d}
+.look-view img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .45s ease,transform 1.2s ease}
+.look-view img.swap{opacity:0;transform:scale(1.07)}
+.look-cap{position:absolute;left:16px;bottom:16px;background:rgba(255,253,244,.93);color:var(--green-deep);font-weight:800;padding:.55rem 1rem;border-radius:999px;font-size:.88rem;letter-spacing:.04em;box-shadow:0 10px 24px rgba(0,0,0,.25)}
+@media(max-width:920px){.look{grid-template-columns:1fr;padding:1.2rem}.look-view{min-height:300px;order:-1}}
+/* --- v3: KREATOR (builder) --- */
+.builder{display:grid;grid-template-columns:1.45fr .85fr;gap:2.2rem;align-items:start}
+.bstep{margin-bottom:1.9rem}
+.bstep h3{font-family:var(--body);font-weight:800;font-size:1.05rem;color:var(--brown);display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem;letter-spacing:0}
+.bstep h3 i{font-style:normal;display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;font-size:.85rem;flex:none}
+.bcards{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem}
+.bcard{background:var(--paper);border:2px solid var(--line);border-radius:18px;overflow:hidden;cursor:pointer;padding:0;text-align:left;font-family:var(--body);transition:border-color .25s,transform .25s,box-shadow .25s}
+.bcard img{width:100%;height:118px;object-fit:cover}
+.bcard span{display:block;font-weight:800;color:var(--brown);padding:.65rem .8rem 0;font-size:.95rem}
+.bcard b{display:block;color:var(--green);padding:.15rem .8rem .75rem;font-size:1rem}
+.bcard:hover{transform:translateY(-3px)}
+.bcard.on{border-color:var(--green);box-shadow:0 14px 30px rgba(23,89,51,.18)}
+.bpills{display:flex;flex-wrap:wrap;gap:.55rem}
+.bpill{background:var(--paper);border:1.5px solid var(--line);border-radius:999px;padding:.6rem 1.05rem;font-weight:700;font-family:var(--body);font-size:.92rem;color:var(--brown);cursor:pointer;transition:all .22s}
+.bpill em{font-style:normal;color:var(--muted);font-weight:800;font-size:.82rem}
+.bpill:hover{border-color:var(--green)}
+.bpill.on{background:var(--green);border-color:var(--green);color:#fff}
+.bpill.on em{color:#cfe6d4}
+.bqty{display:inline-flex;align-items:center;gap:1.1rem;background:var(--paper);border:1.5px solid var(--line);border-radius:999px;padding:.4rem .6rem}
+.bqty button{width:40px;height:40px;border-radius:50%;border:none;background:var(--green);color:#fff;font-size:1.25rem;font-weight:800;cursor:pointer;line-height:1}
+.bqty b{font-size:1.15rem;min-width:1.4rem;text-align:center}
+.bsummary{position:sticky;top:104px;background:var(--green-deep);color:#eaf3ea;border-radius:24px;padding:1.4rem;box-shadow:0 30px 60px rgba(13,61,33,.35)}
+.bsum-img{border-radius:16px;overflow:hidden;margin-bottom:1.1rem;border:3px solid rgba(255,255,255,.25)}
+.bsum-img img{width:100%;height:190px;object-fit:cover;transition:opacity .35s}
+.bsummary h3{font-family:var(--disp);font-weight:400;letter-spacing:.06em;font-size:1.5rem;margin-bottom:.8rem}
+.bsummary ul{list-style:none;margin-bottom:1rem}
+.bsummary li{display:flex;justify-content:space-between;gap:1rem;padding:.42rem 0;border-bottom:1px dashed rgba(255,255,255,.22);font-size:.93rem}
+.bsummary li span{opacity:.85}.bsummary li b{white-space:nowrap}
+.btotal{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:1.1rem;margin:.4rem 0 1.1rem}
+.btotal b{font-family:var(--disp);font-size:2rem;color:#ffd9a8;letter-spacing:.03em}
+.bwa{width:100%;justify-content:center;background:#25d366;color:#07351a;box-shadow:0 14px 30px rgba(0,0,0,.3)}
+.bwa:hover{transform:translateY(-3px)}
+.bnote{font-size:.8rem;opacity:.75;line-height:1.55;margin-top:.9rem}
+@media(max-width:920px){.builder{grid-template-columns:1fr}.bsummary{position:static}.bcards{grid-template-columns:repeat(3,1fr)}.bcard img{height:84px}.bcard span{font-size:.82rem;padding:.5rem .55rem 0}.bcard b{padding:.1rem .55rem .55rem;font-size:.9rem}}
+
+/* --- v4: PRELOADER --- */
+body.loading{overflow:hidden}
+#loader{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center}
+#loader.done{pointer-events:none}
+.ldoor{position:absolute;top:0;height:100%;width:50.6%;transition:transform .75s cubic-bezier(.76,0,.24,1) .05s;will-change:transform}
+.ldoor-l{left:0;background:linear-gradient(115deg,var(--green-deep) 0%,var(--green) 78%,#1d6b3d 100%);box-shadow:inset -3px 0 0 rgba(247,242,227,.85)}
+.ldoor-r{right:0;background:linear-gradient(245deg,var(--green-deep) 0%,var(--green) 78%,#1d6b3d 100%);box-shadow:inset 3px 0 0 rgba(247,242,227,.85)}
+#loader.open .ldoor-l{transform:translateX(-103%)}
+#loader.open .ldoor-r{transform:translateX(103%)}
+.load-core{position:relative;text-align:center;transition:opacity .45s ease,transform .45s ease;z-index:2}
+#loader.open .load-core{opacity:0;transform:scale(.85)}
+.load-badge{width:118px;height:118px;margin:0 auto;filter:drop-shadow(0 18px 30px rgba(0,0,0,.45));animation:loadspin .9s cubic-bezier(.65,.05,.36,1) 1 both}
+@keyframes loadspin{0%{transform:rotate(0) scale(1)}50%{transform:rotate(180deg) scale(1.07)}100%{transform:rotate(360deg) scale(1)}}
+.load-name{font-family:var(--disp);font-size:2.1rem;letter-spacing:.14em;color:var(--cream);margin-top:1rem}
+.load-sub{color:#bcd6c2;font-weight:800;font-size:.72rem;letter-spacing:.3em;margin-top:.2rem}
+.load-bar{width:150px;height:3px;background:rgba(247,242,227,.25);border-radius:3px;margin:1.1rem auto 0;overflow:hidden}
+.load-bar i{display:block;height:100%;width:40%;background:var(--cream);border-radius:3px;animation:loadbar 1.1s ease-in-out infinite}
+@keyframes loadbar{0%{transform:translateX(-110%)}100%{transform:translateX(400px)}}
+/* --- v4: DOSTAWA --- */
+.dostawa{display:grid;grid-template-columns:.92fr 1.08fr;gap:3.2rem;align-items:center}
+.dostawa-img img{width:100%;border-radius:24px;border:6px solid #fff;box-shadow:0 34px 64px rgba(58,50,43,.3)}
+.dostawa h2{font-size:clamp(2.5rem,5.4vw,4.2rem);margin:.7rem 0 .8rem;color:var(--brown)}
+.dostawa-lead{color:var(--muted);line-height:1.7;margin-top:1.1rem;max-width:32rem}
+.dostawa-points{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;margin:1.6rem 0}
+.dpoint{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:1rem;box-shadow:0 10px 26px rgba(58,50,43,.07)}
+.dpoint b{font-family:var(--disp);font-weight:400;font-size:1.55rem;color:var(--green);display:block;letter-spacing:.02em}
+.dpoint span{color:var(--muted);font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.dostawa-cta{display:flex;gap:.9rem;flex-wrap:wrap}
+.dostawa-note{color:var(--muted);margin-top:1.1rem;font-size:.92rem}
+.dostawa-note b{color:var(--brown)}
+@media(max-width:920px){.dostawa{grid-template-columns:1fr;gap:2rem}.dostawa-points{grid-template-columns:repeat(3,1fr);gap:.6rem}.dpoint{padding:.8rem .6rem}.dpoint b{font-size:1.25rem}}
+</style>
+
+<!-- 4. MENU -->
+
+<!-- 4A. Z BLISKA — closer look (Apple style) -->
+<section class="look-sec" id="zbliska">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag" data-reveal>Up close</span>
+      <h2 data-reveal>SEE WHAT LANDS ON YOUR PLATE</h2><div class="head-line" data-line></div>
+      <p data-reveal style="margin-top:.9rem">Click and take a closer look — all the photos are real, straight from our kitchen and our Facebook page.</p>
+    </div>
+    <div class="look" data-reveal>
+      <div class="look-list" id="lookList">
+        <button class="litem on" data-img="assets/dish-rozen.jpg" data-pos="center 30%" data-cap="Meat from the spit"><span class="lhead"><span class="lx">+</span>Meat from the spit</span><span class="lp">Marinated overnight in our signature spice blend. Sliced in thin pieces straight from the fire — always fresh, never made in advance.</span></button>
+        <button class="litem" data-img="assets/dish-talerz.jpg" data-pos="78% center" data-cap="Fresh salads and vegetables"><span class="lhead"><span class="lx">+</span>Fresh salads and vegetables</span><span class="lp">Slaws and salads chopped fresh every morning. Crunchy, colourful and always fresh — no compromises.</span></button>
+        <button class="litem" data-img="assets/dish-rollo.jpg" data-pos="center" data-cap="Rollo Sufi"><span class="lhead"><span class="lx">+</span>Rollo Sufi</span><span class="lp">A thin tortilla, hot meat from the spit, fresh vegetables and our sauce. Rolled right in front of you, ready in a few minutes.</span></button>
+        <button class="litem" data-img="assets/dish-frytki.jpg" data-pos="center 35%" data-cap="Fries and extras"><span class="lhead"><span class="lx">+</span>Fries and extras</span><span class="lp">Curly, zigzag or sweet potato — golden and crispy. Plus nuggets, onion rings and prawns.</span></button>
+        <button class="litem" data-img="assets/dish-rollo-frytki.jpg" data-pos="center" data-cap="Sets that fill you up"><span class="lhead"><span class="lx">+</span>Sets that fill you up</span><span class="lp">Kebab with fries in a single set — a generous portion for a big appetite, on your own or to share.</span></button>
+      </div>
+      <div class="look-view">
+        <img id="lookImg" src="assets/dish-rozen.jpg" alt="Sufi Kebab up close">
+        <div class="look-cap" id="lookCap">Meat from the spit</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-sec" id="menu">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag" data-reveal>Menu</span>
+      <h2 data-reveal>CHOOSE YOUR FLAVOUR</h2><div class="head-line" data-line></div>
+      <p data-reveal style="margin-top:.9rem">Chicken, beef or a mix — in a bun, a tortilla, on a plate or in a box. Mild, mixed or spicy sauce? You decide.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="mitem" data-reveal><span class="no">01</span><div><h3>Kebab in a bun</h3><p>Meat off the grill, fresh vegetables, a sauce of your choice and a crispy bun.</p></div><span class="price">22 zł</span></div>
+      <div class="mitem" data-reveal><span class="no">02</span><div><h3>Kebab in a tortilla</h3><p>A thin wrap, meat, lettuce, tomato, cucumber and sauce. Our bestseller.</p></div><span class="price">24 zł</span></div>
+      <div class="mitem" data-reveal><span class="no">03</span><div><h3>Kebab on a plate</h3><p>Meat, fries or rice, a set of slaws and sauces. A portion that fills you up.</p></div><span class="price">36 zł</span></div>
+      <div class="mitem" data-reveal><span class="no">04</span><div><h3>Kebab Box</h3><p>Meat with fries and sauce in one box. Perfect for takeaway.</p></div><span class="price">28 zł</span></div>
+      <div class="mitem" data-reveal><span class="no">05</span><div><h3>Kebab Mega (50 cm)</h3><p>For the really hungry, or to share between two.</p></div><span class="price">42 zł</span></div>
+      <div class="mitem" data-reveal><span class="no">06</span><div><h3>Falafel Veggie</h3><p>Crispy falafel, fresh vegetables and sauce. Light and meat-free.</p></div><span class="price">21 zł</span></div>
+      <div class="mitem" data-reveal><span class="no">07</span><div><h3>Curly / zigzag fries</h3><p>Curly or zigzag, with a sauce of your choice. Straight from our new arrivals.</p></div><span class="price">10 zł</span></div>
+      <div class="mitem" data-reveal><span class="no">08</span><div><h3>Ayran / drinks</h3><p>Classic ayran and cold drinks to go with every set.</p></div><span class="price">6 zł</span></div>
+    </div>
+    <div class="menu-feat" data-reveal>
+      <img src="assets/dish-rollo-frytki.jpg" alt="Kebab with fries — a real photo" data-inner-parallax loading="lazy">
+      <div class="cap"><div><h3>SUFI PLATTER — FOR TWO</h3><p>A mix of grilled meats, rice, grilled vegetables and bread.</p></div><a class="btn btn-red" href="#kontakt">Order the platter</a></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 5A. KREATOR KEBABA — interactive builder + WhatsApp order -->
+<section class="builder-sec" id="kreator">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag" data-reveal>Kebab builder</span>
+      <h2 data-reveal>BUILD YOUR OWN KEBAB</h2><div class="head-line" data-line></div>
+      <p data-reveal style="margin-top:.9rem">Pick, click and watch the price grow — then send us your finished order with a single click on WhatsApp.</p>
+    </div>
+    <div class="builder" data-reveal>
+      <div class="bsteps">
+        <div class="bstep"><h3><i>1</i> Choose your base</h3>
+          <div class="bcards" id="bBaza">
+            <button class="bcard on" data-name="Kebab in a tortilla" data-price="24" data-img="assets/dish-rollo.jpg"><img src="assets/dish-rollo.jpg" alt="Kebab in a tortilla"><span>Kebab in a tortilla</span><b>24 zł</b></button>
+            <button class="bcard" data-name="Kebab in a bun" data-price="22" data-img="assets/dish-rollo-frytki.jpg"><img src="assets/dish-rollo-frytki.jpg" alt="Kebab in a bun"><span>Kebab in a bun</span><b>22 zł</b></button>
+            <button class="bcard" data-name="Sufi Platter" data-price="36" data-img="assets/dish-talerz.jpg"><img src="assets/dish-talerz.jpg" alt="Sufi Platter"><span>Sufi Platter</span><b>36 zł</b></button>
+          </div>
+        </div>
+        <div class="bstep"><h3><i>2</i> Meat</h3>
+          <div class="bpills" id="bMieso">
+            <button class="bpill on" data-name="Chicken" data-price="0">Chicken</button>
+            <button class="bpill" data-name="Mixed" data-price="2">Mixed <em>+2 zł</em></button>
+            <button class="bpill" data-name="Beef" data-price="4">Beef <em>+4 zł</em></button>
+            <button class="bpill" data-name="Falafel (veggie)" data-price="0">Falafel <em>veggie</em></button>
+          </div>
+        </div>
+        <div class="bstep"><h3><i>3</i> Sauce</h3>
+          <div class="bpills" id="bSos">
+            <button class="bpill on" data-name="Garlic">Garlic</button>
+            <button class="bpill" data-name="Mild">Mild</button>
+            <button class="bpill" data-name="Mixed">Mixed</button>
+            <button class="bpill" data-name="Spicy">Spicy 🔥</button>
+          </div>
+        </div>
+        <div class="bstep"><h3><i>4</i> Extras</h3>
+          <div class="bpills" id="bDodatki">
+            <button class="bpill chk" data-name="Curly fries" data-price="10">Curly fries <em>10 zł</em></button>
+            <button class="bpill chk" data-name="Zigzag fries" data-price="10">Zigzag fries <em>10 zł</em></button>
+            <button class="bpill chk" data-name="Sweet potato fries" data-price="15">Sweet potato fries <em>15 zł</em></button>
+            <button class="bpill chk" data-name="Onion rings" data-price="15">Onion rings <em>15 zł</em></button>
+            <button class="bpill chk" data-name="Chicken nuggets" data-price="15">Chicken nuggets <em>15 zł</em></button>
+            <button class="bpill chk" data-name="Prawns with fries" data-price="20">Prawns with fries <em>20 zł</em></button>
+            <button class="bpill chk" data-name="Extra cheese" data-price="3">Extra cheese <em>3 zł</em></button>
+            <button class="bpill chk" data-name="Extra meat" data-price="8">Extra meat <em>8 zł</em></button>
+            <button class="bpill chk" data-name="Extra sauce" data-price="2">Extra sauce <em>2 zł</em></button>
+          </div>
+        </div>
+        <div class="bstep"><h3><i>5</i> Quantity</h3>
+          <div class="bqty"><button id="bMinus" aria-label="Decrease quantity">−</button><b id="bQty">1</b><button id="bPlus" aria-label="Increase quantity">+</button></div>
+        </div>
+      </div>
+      <aside class="bsummary">
+        <div class="bsum-img"><img id="bImg" src="assets/dish-rollo.jpg" alt="Your kebab"></div>
+        <h3>YOUR ORDER</h3>
+        <ul id="bList"></ul>
+        <div class="btotal"><span>Total</span><b id="bTotal">24 zł</b></div>
+        <a class="btn btn-green bwa" id="bOrder" href="#" target="_blank" rel="noopener">Order via WhatsApp →</a>
+        <p class="bnote">Your order will open in the WhatsApp app to the number 514 524 296 — just tap "Send". Delivery 11:00–23:00.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- 5. PINNED STORY -->
+<section class="story" id="historia">
+  <div class="story-pin" id="storyPin">
+    <div class="wrap">
+      <div>
+        <span class="tag">How we make our kebab</span>
+        <div class="story-steps">
+          <div class="step on" data-step="0"><div class="k">01</div><h3>MARINATED OVERNIGHT</h3><p>The meat soaks in a spice marinade all night long. In the morning, it is ready for the grill.</p></div>
+          <div class="step" data-step="1"><div class="k">02</div><h3>SLICED FROM THE FIRE</h3><p>Our chef slices the meat in thin pieces straight off the vertical grill — always fresh, never in advance.</p></div>
+          <div class="step" data-step="2"><div class="k">03</div><h3>SERVED STRAIGHT AWAY</h3><p>Fresh vegetables, warm bread and our own sauce. From the grill to your table in a few minutes.</p></div>
+        </div>
+        <div class="story-dots"><i class="on"></i><i></i><i></i></div>
+      </div>
+      <div class="story-visual">
+        <img id="sv0" src="assets/dish-rozen.jpg" alt="The meat spit — a real photo">
+        <img id="sv1" src="assets/dish-rollo.jpg" alt="Rollo Sufi — a real photo" loading="lazy">
+        <img id="sv2" src="assets/dish-talerz.jpg" alt="Sufi Platter — a real photo" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. SPECIALS -->
+<section id="promocje">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag" data-reveal>Specials</span><h2 data-reveal>DEALS OF THE WEEK</h2><div class="head-line" data-line></div></div>
+    <div class="deals">
+      <div class="deal deal-a" data-reveal><div class="off">2 + 1</div><h3>THREE TORTILLAS, PAY FOR TWO</h3><p>Gather your crew — buy two kebabs in a tortilla and the third one is on us. Dine-in only.</p></div>
+      <div class="deal deal-b" data-reveal><div class="off">-15%</div><h3>STUDENT TUESDAY</h3><p>Show your student ID and get the whole menu 15% cheaper every Tuesday. Tasty and student-friendly.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 6B. DOSTAWA — delivery service -->
+<section class="dostawa-sec" id="dostawa">
+  <div class="wrap dostawa">
+    <div class="dostawa-img" data-reveal><img src="assets/dostawa.jpg" alt="Sufi Kebab delivery — our courier is on the way"></div>
+    <div>
+      <span class="tag" data-reveal>Delivery</span>
+      <h2 data-reveal>DELIVERY ALL THE TIME</h2><div class="head-line" data-line></div>
+      <p class="dostawa-lead" data-reveal>You do not have to leave home. We bring your hot kebab straight to your door — fast, tasty and always close to you.</p>
+      <div class="dostawa-points">
+        <div class="dpoint" data-reveal><b>11:00–23:00</b><span>delivery every day</span></div>
+        <div class="dpoint" data-reveal><b>35–60 min</b><span>average delivery time</span></div>
+        <div class="dpoint" data-reveal><b>from 20 zł</b><span>minimum order</span></div>
+      </div>
+      <div class="dostawa-cta" data-reveal>
+        <a class="btn btn-red" href="tel:+48514524296">☎ Call: 514 524 296</a>
+        <a class="btn btn-green" href="https://wa.me/48514524296?text=Hello!%20I%20would%20like%20to%20order%20a%20kebab%20with%20delivery." target="_blank" rel="noopener">Order via WhatsApp</a>
+      </div>
+      <p class="dostawa-note" data-reveal>You can also find us on <b>Pyszne.pl</b> — just type "Sufi Kebab" and order in the app.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. GALLERY -->
+<section id="galeria" style="padding-top:1rem">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag" data-reveal>Gallery</span><h2 data-reveal>STRAIGHT FROM OUR KITCHEN</h2><div class="head-line" data-line></div><p data-reveal style="margin-top:.9rem">The gallery moves on its own — hover to pause it. More photos on our Facebook page.</p></div>
+  </div>
+  <div class="wrap"><div class="gal-mask"><div class="gal-track" id="galTrack">
+      <figure><img src="assets/dish-rollo.jpg" alt="Rollo Sufi" loading="lazy"><figcaption>🥙 Rollo — the bestseller</figcaption></figure>
+      <figure><img src="assets/dish-rozen.jpg" alt="The spit" loading="lazy"><figcaption>🔥 The spit, from early morning</figcaption></figure>
+      <figure><img src="assets/dish-talerz.jpg" alt="Sufi Platter" loading="lazy"><figcaption>🍽 Sufi Platter</figcaption></figure>
+      <figure><img src="assets/dish-frytki.jpg" alt="Fries and extras" loading="lazy"><figcaption>🍟 Fries and extras</figcaption></figure>
+  </div></div></div>
+</section>
+
+<!-- 8. REVIEWS -->
+<section style="padding-top:1rem">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag" data-reveal>Reviews</span><h2 data-reveal>WIELUŃ SAYS: WORTH IT</h2><div class="head-line" data-line></div></div>
+    <div class="rev-grid">
+      <div class="rev" data-reveal><div class="stars">★★★★★</div><p>“The best kebab in the area. The meat is always fresh, the spicy sauce is genuinely spicy, and the portions are fair.”</p><b>Marek K.</b><span>regular customer</span></div>
+      <div class="rev" data-reveal><div class="stars">★★★★★</div><p>“We order for the whole family on Fridays. Fast delivery, the food arrives warm, and the kids love the box.”</p><b>Anna W.</b><span>delivery order</span></div>
+      <div class="rev" data-reveal><div class="stars">★★★★☆</div><p>“The platter for two is seriously generous. You can tell the vegetables are chopped fresh, not taken from a box.”</p><b>Piotr S.</b><span>review from Pyszne.pl</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9+10. CONTACT -->
+<section class="contact-sec" id="kontakt">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag" data-reveal>Contact</span><h2 data-reveal>FIND US IN WIELUŃ</h2><div class="head-line" data-line></div></div>
+    <div class="contact-grid">
+      <div class="cbox" data-reveal>
+        <h3>OPENING HOURS &amp; CONTACT</h3>
+        <div class="crow"><span>Address</span><span>ul. Głowackiego 28, 98-300 Wieluń</span></div>
+        <div class="crow"><span>Mon – Sun</span><span>9:00 – 1:00</span></div>
+        <div class="crow"><span>Delivery</span><span>11:00 – 23:00</span></div>
+        <div class="crow"><span>Phone</span><span><a href="tel:+48514524296" style="color:var(--green);font-weight:800">514 524 296</a></span></div>
+        <div class="crow"><span>Delivery</span><span>35–60 min • from 20 zł</span></div>
+        <div class="crow"><span>Facebook</span><span><a href="https://facebook.com/7starwielun" target="_blank" rel="noopener" style="color:var(--green);font-weight:800">@7starwielun</a></span></div>
+        <p style="color:var(--muted);margin-top:1.2rem;line-height:1.6">Order via WhatsApp too: <a href="https://wa.me/48514524296" target="_blank" rel="noopener" style="color:var(--green);font-weight:800">514 524 296</a> — or build your own kebab in the builder above.</p>
+      </div>
+      <div class="map" data-reveal><iframe title="Map — Wieluń" src="https://www.google.com/maps?q=G%C5%82owackiego+28,+98-300+Wielu%C5%84,+Poland&output=embed" loading="lazy"></iframe></div>
+    </div>
+    <div class="big-cta" data-reveal>
+      <h2>HUNGRY? DO NOT WAIT.</h2>
+      <a class="btn" href="https://wa.me/48514524296?text=Hello!%20I%20would%20like%20to%20order%20a%20kebab." target="_blank" rel="noopener">Order via WhatsApp →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <img src="assets/logo.png" alt="Sufi Kebab — logo">
+    <span>© 2026 Sufi Kebab Wieluń • ★ 4.6 on Pyszne.pl • 20,000+ fans</span>
+    <a href="https://facebook.com/7starwielun" target="_blank" rel="noopener">Facebook @7starwielun</a>
+  </div>
+</footer>
+
+<a class="call-fab" id="callFab" href="tel:+48514524296">☎ 514 524 296</a>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = ['FRESH MEAT OFF THE GRILL','✦','OUR OWN SAUCES','✦','DELIVERY 35–60 MIN','✦','RATED 4.6','✦','WIELUŃ','✦'];
+  var html = items.map(function(t){return '<span>'+t+(t==='✦'?'':' <i>✦</i>')+'</span>';}).join('');
+  document.getElementById('marqueeTrack').innerHTML = html + html;
+  // duplicate gallery for seamless loop
+  var gal = document.getElementById('galTrack');
+  if (gal) gal.innerHTML += gal.innerHTML;
+  // call fab after hero
+  window.addEventListener('scroll', function(){ var f=document.getElementById('callFab'); if(f) f.style.transform = window.scrollY > 650 ? 'none' : 'translateY(180%)'; }, {passive:true});
+  if (reduced || !window.gsap) {
+    document.querySelectorAll('[data-reveal],.step').forEach(function(el){ el.style.opacity=1; });
+    return;
+  }
+  gsap.registerPlugin(ScrollTrigger);
+  var lenis = null;
+  if (window.Lenis) {
+    lenis = new Lenis({ duration: 1.3, smoothWheel: true, easing: function(t){ return Math.min(1, 1.001 - Math.pow(2, -10 * t)); } });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function(t){ lenis.raf(t*1000); });
+    gsap.ticker.lagSmoothing(0);
+  }
+  // smooth anchor scrolling through Lenis
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (id.length > 1) {
+        var target = document.querySelector(id);
+        if (target) { e.preventDefault(); if (lenis) lenis.scrollTo(target, { offset: -76, duration: 1.4 }); else target.scrollIntoView({behavior:'smooth'}); }
+      }
+    });
+  });
+  // top scroll progress
+  gsap.to('#progress', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: 0.3 } });
+  // header state
+  ScrollTrigger.create({ start: 80, onToggle: function(s){ document.getElementById('header').classList.toggle('scrolled', s.isActive); } });
+  // intro timeline
+  var intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  intro.fromTo('#header', { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: .7 })
+       .fromTo('.hero h1 .wline', { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: 0.12 }, '-=0.3')
+       .fromTo('#heroFrame', { clipPath: 'inset(0 0 100% 0 round 26px)', rotate: 6 }, { clipPath: 'inset(0 0 0% 0 round 26px)', rotate: 2, duration: 1.15, ease: 'power3.inOut' }, '-=0.7')
+       .fromTo('.chip', { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: .55, ease: 'back.out(2.2)', stagger: 0.1 }, '-=0.4')
+       .fromTo('#heroBadge', { scale: 0, rotate: -40 }, { scale: 1, rotate: 0, duration: .7, ease: 'back.out(1.8)' }, '-=0.35');
+  // hero image: slow ken burns + parallax
+  gsap.to('#heroImg', { scale: 1.1, duration: 9, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+  gsap.to('#heroImg', { yPercent: 7, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.to('.hero-bg', { yPercent: 18, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  // floating chips + badge
+  gsap.utils.toArray('.chip').forEach(function(c, i){ gsap.to(c, { y: i % 2 ? 9 : -9, duration: 2 + i * .4, ease: 'sine.inOut', yoyo: true, repeat: -1 }); });
+  gsap.to('#heroBadge', { rotate: 360, duration: 40, ease: 'none', repeat: -1 });
+  // reveals (one batched system: set hidden first, then animate in once)
+  gsap.utils.toArray('[data-reveal]').forEach(function(el){ gsap.set(el, { y: 46, opacity: 0 }); });
+  ScrollTrigger.batch('[data-reveal]', { start: 'top 88%', once: true, onEnter: function(els){ gsap.to(els, { y: 0, opacity: 1, duration: .95, ease: 'power3.out', stagger: 0.09, overwrite: true }); } });
+  // heading lines grow
+  gsap.utils.toArray('[data-line]').forEach(function(el){ gsap.fromTo(el, { scaleX: 0 }, { scaleX: 1, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 90%' } }); });
+  // inner image parallax
+  gsap.utils.toArray('[data-inner-parallax]').forEach(function(img){
+    gsap.fromTo(img, { yPercent: -7, scale: 1.16 }, { yPercent: 7, scale: 1.16, ease: 'none', scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
+  });
+  // marquee loop
+  gsap.to('#marqueeTrack', { xPercent: -50, ease: 'none', duration: 22, repeat: -1 });
+  // gallery infinite loop, pause on hover
+  var galTween = gsap.to('#galTrack', { xPercent: -50, ease: 'none', duration: 34, repeat: -1 });
+  var galMask = document.querySelector('.gal-mask');
+  if (galMask) { galMask.addEventListener('mouseenter', function(){ galTween.pause(); }); galMask.addEventListener('mouseleave', function(){ galTween.resume(); }); }
+  // counters
+  gsap.utils.toArray('.count').forEach(function(el){
+    var to = parseFloat(el.dataset.to), dec = parseInt(el.dataset.dec || '0', 10), obj = { v: 0 };
+    ScrollTrigger.create({ trigger: el, start: 'top 90%', once: true, onEnter: function(){ gsap.to(obj, { v: to, duration: 1.7, ease: 'power2.out', onUpdate: function(){ el.textContent = obj.v.toFixed(dec); } }); } });
+  });
+  // pinned story: smoother scrub (scrub 1) + dots + image crossfade/scale
+  var steps = gsap.utils.toArray('.step'), dots = document.querySelectorAll('.story-dots i');
+  gsap.timeline({ scrollTrigger: { trigger: '#storyPin', start: 'top top', end: '+=1500', pin: true, scrub: 1,
+    onUpdate: function(self){
+      var idx = Math.min(2, Math.floor(self.progress * 3));
+      steps.forEach(function(s, i){ s.classList.toggle('on', i === idx); });
+      dots.forEach(function(d, i){ d.classList.toggle('on', i === idx); });
+      for (var i = 0; i < 3; i++) { gsap.to('#sv' + i, { opacity: i === idx ? 1 : 0, scale: i === idx ? 1 : 1.12, duration: .5, overwrite: 'auto' }); }
+    } } }).to({}, { duration: 1 });
+  // magnetic primary buttons (desktop)
+  if (window.matchMedia('(pointer: fine)').matches) {
+    document.querySelectorAll('.btn-red, .btn-green').forEach(function(b){
+      b.addEventListener('mousemove', function(e){ var r = b.getBoundingClientRect(); gsap.to(b, { x: (e.clientX - r.left - r.width/2) * .18, y: (e.clientY - r.top - r.height/2) * .3, duration: .4 }); });
+      b.addEventListener('mouseleave', function(){ gsap.to(b, { x: 0, y: 0, duration: .5, ease: 'elastic.out(1,0.4)' }); });
+    });
+  }
+})();
+</script>
+
+<script>
+(function(){
+  /* ===== Z BLISKA ===== */
+  var items=[].slice.call(document.querySelectorAll('.litem'));
+  var img=document.getElementById('lookImg'), cap=document.getElementById('lookCap');
+  var cur=0, timer=null;
+  function show(i){
+    var it=items[i]; if(!it) return;
+    items.forEach(function(x){x.classList.remove('on')});
+    it.classList.add('on'); cur=i;
+    img.classList.add('swap');
+    setTimeout(function(){
+      img.src=it.getAttribute('data-img');
+      img.style.objectPosition=it.getAttribute('data-pos')||'center';
+      cap.textContent=it.getAttribute('data-cap');
+      img.onload=function(){img.classList.remove('swap')};
+      setTimeout(function(){img.classList.remove('swap')},350);
+    },220);
+  }
+  function auto(){ timer=setInterval(function(){ show((cur+1)%items.length); },4600); }
+  items.forEach(function(it,i){ it.addEventListener('click',function(){ if(timer){clearInterval(timer);timer=null;} show(i); }); });
+  if(items.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) auto();
+
+  /* ===== KREATOR KEBABA ===== */
+  var state={baza:null,mieso:null,sos:null,dod:[],qty:1};
+  function pick(group,btn){
+    var box=document.getElementById(group);
+    box.querySelectorAll('.on').forEach(function(x){x.classList.remove('on')});
+    btn.classList.add('on');
+    return {name:btn.getAttribute('data-name'),price:parseInt(btn.getAttribute('data-price')||'0',10),img:btn.getAttribute('data-img')};
+  }
+  function money(n){return n+' zł'}
+  function render(){
+    var unit=state.baza.price+state.mieso.price+state.dod.reduce(function(s,d){return s+d.price},0);
+    var rows=[['<span>'+state.baza.name+'</span>',money(state.baza.price)],
+              ['<span>Meat: '+state.mieso.name+'</span>',state.mieso.price?money(state.mieso.price):'included'],
+              ['<span>Sauce: '+state.sos.name+'</span>','included']];
+    state.dod.forEach(function(d){ rows.push(['<span>+ '+d.name+'</span>',money(d.price)]); });
+    if(state.qty>1) rows.push(['<span>Quantity</span>','× '+state.qty]);
+    document.getElementById('bList').innerHTML=rows.map(function(r){return '<li>'+r[0]+'<b>'+r[1]+'</b></li>'}).join('');
+    document.getElementById('bTotal').textContent=money(unit*state.qty);
+    document.getElementById('bQty').textContent=state.qty;
+    var bImg=document.getElementById('bImg');
+    if(state.baza.img && bImg.getAttribute('src')!==state.baza.img){ bImg.style.opacity=0; setTimeout(function(){ bImg.src=state.baza.img; bImg.onload=function(){bImg.style.opacity=1}; setTimeout(function(){bImg.style.opacity=1},300); },180); }
+    var lines=["Hello! I'm ordering via the Sufi Kebab website:",'',
+      '• '+state.baza.name+' — '+money(state.baza.price),
+      '• Meat: '+state.mieso.name+(state.mieso.price?' (+'+money(state.mieso.price)+')':''),
+      '• Sauce: '+state.sos.name];
+    if(state.dod.length) lines.push('• Extras: '+state.dod.map(function(d){return d.name+' ('+money(d.price)+')'}).join(', '));
+    lines.push('• Quantity: '+state.qty,'','Total: '+money(unit*state.qty));
+    document.getElementById('bOrder').href='https://wa.me/48514524296?text='+encodeURIComponent(lines.join('\n'));
+  }
+  document.querySelectorAll('#bBaza .bcard').forEach(function(b){ b.addEventListener('click',function(){ state.baza=pick('bBaza',b); render(); }); });
+  document.querySelectorAll('#bMieso .bpill').forEach(function(b){ b.addEventListener('click',function(){ state.mieso=pick('bMieso',b); render(); }); });
+  document.querySelectorAll('#bSos .bpill').forEach(function(b){ b.addEventListener('click',function(){ state.sos={name:b.getAttribute('data-name'),price:0}; pick('bSos',b); state.sos={name:b.getAttribute('data-name'),price:0}; render(); }); });
+  document.querySelectorAll('#bDodatki .bpill').forEach(function(b){ b.addEventListener('click',function(){
+    b.classList.toggle('on');
+    var d={name:b.getAttribute('data-name'),price:parseInt(b.getAttribute('data-price')||'0',10)};
+    if(b.classList.contains('on')) state.dod.push(d); else state.dod=state.dod.filter(function(x){return x.name!==d.name});
+    render();
+  }); });
+  document.getElementById('bMinus').addEventListener('click',function(){ if(state.qty>1){state.qty--; render();} });
+  document.getElementById('bPlus').addEventListener('click',function(){ if(state.qty<9){state.qty++; render();} });
+  state.baza={name:'Kebab in a tortilla',price:24,img:'assets/dish-rollo.jpg'};
+  state.mieso={name:'Chicken',price:0};
+  state.sos={name:'Garlic',price:0};
+  render();
+})();
+</script>
+
+<script>
+(function(){
+  var loader=document.getElementById('loader');
+  if(!loader) return;
+  var t0=performance.now(), done=false;
+  function openLoader(){
+    if(done) return; done=true;
+    loader.classList.add('open');
+    document.body.classList.remove('loading');
+    setTimeout(function(){ loader.classList.add('done'); if(loader.parentNode) loader.parentNode.removeChild(loader); },900);
+  }
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced){ setTimeout(openLoader,250); return; }
+  function ready(){
+    var wait=Math.max(0, 1000-(performance.now()-t0));
+    setTimeout(openLoader, wait);
+  }
+  if(document.readyState==='complete') ready();
+  else window.addEventListener('load', ready);
+  setTimeout(openLoader, 2500); /* failsafe */
+})();
+</script>
+</body>
+</html>
