@@ -43,7 +43,11 @@ header.scrolled{background:rgba(247,242,227,.92);backdrop-filter:blur(12px);padd
 .nav nav a{opacity:.8;transition:.25s;position:relative}
 .nav nav a:hover{opacity:1;color:var(--green)}
 .nav .btn{padding:.7rem 1.3rem}
-@media(max-width:860px){.nav nav{display:none}.logo img{height:48px}.nav .btn{padding:.62rem 1.05rem;font-size:.85rem;white-space:nowrap}}
+.lang-switch{display:flex;border:1.5px solid var(--line);border-radius:999px;overflow:hidden;background:var(--paper);flex:none}
+.lang-switch a{padding:.42rem .8rem;font-weight:800;font-size:.8rem;letter-spacing:.05em;color:var(--muted);line-height:1}
+.lang-switch a.on{background:var(--green);color:#fff}
+.lang-switch a:not(.on):hover{color:var(--green)}
+@media(max-width:860px){.nav nav{display:none}.logo img{height:48px}.nav .btn{padding:.62rem 1.05rem;font-size:.85rem;white-space:nowrap}.lang-switch a{padding:.38rem .6rem;font-size:.74rem}.nav{gap:.6rem}}
 /* hero */
 .hero{position:relative;padding:9rem 0 5.5rem;overflow:hidden}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(900px 520px at 88% 12%,rgba(23,89,51,.14),transparent 60%),radial-gradient(760px 520px at 4% 92%,rgba(190,32,47,.10),transparent 60%)}
@@ -82,9 +86,10 @@ section{padding:6.2rem 0;position:relative}
 .about p{color:var(--muted);line-height:1.75;margin-bottom:1.1rem}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
 .stat{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:1.2rem;box-shadow:0 10px 26px rgba(58,50,43,.07)}
-.stat b{font-family:var(--disp);font-size:2.3rem;color:var(--green);display:block}
+.stat b{font-family:var(--disp);font-size:2.55rem;line-height:1;color:var(--green);display:block}
+.stat .count{font:inherit;color:inherit}
 .stat:nth-child(2) b{color:var(--red)}
-.stat span{color:var(--muted);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.stat>span{color:var(--muted);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
 @media(max-width:920px){.about .wrap{grid-template-columns:1fr}}
 </style>
 </head>
@@ -108,6 +113,7 @@ section{padding:6.2rem 0;position:relative}
     <nav>
       <a href="#onas">O nas</a><a href="#menu">Menu</a><a href="#kreator">Kreator</a><a href="#zbliska">Z bliska</a><a href="#dostawa">Dostawa</a><a href="#historia">Jak robimy</a><a href="#galeria">Galeria</a><a href="#kontakt">Kontakt</a>
     </nav>
+    <div class="lang-switch" aria-label="Wybór języka / Language"><a href="index.html" class="on" aria-current="true">PL</a><a href="en.html">EN</a></div>
     <a class="btn btn-red" href="#kontakt">☎ Zamów teraz</a>
   </div>
 </header>
