@@ -106,12 +106,11 @@ section{padding:6.2rem 0;position:relative}
   </div>
 </div>
 
-
 <header id="header">
   <div class="wrap nav">
     <a class="logo" href="#start" aria-label="Sufi Kebab Wieluń"><img src="assets/logo.png" alt="Sufi Kebab — logo"></a>
     <nav>
-      <a href="#onas">O nas</a><a href="#menu">Menu</a><a href="#kreator">Kreator</a><a href="#zbliska">Z bliska</a><a href="#dostawa">Dostawa</a><a href="#historia">Jak robimy</a><a href="#galeria">Galeria</a><a href="#kontakt">Kontakt</a>
+      <a href="#onas">O nas</a><a href="#menu">Menu</a><a href="#kreator">Kreator</a><a href="#zbliska">Z bliska</a><a href="#dostawa">Dostawa</a><a href="#galeria">Galeria</a><a href="#kontakt">Kontakt</a>
     </nav>
     <div class="lang-switch" aria-label="Wybór języka / Language"><a href="index.html" class="on" aria-current="true">PL</a><a href="en.html">EN</a></div>
     <a class="btn btn-red" href="#kontakt">☎ Zamów teraz</a>
@@ -382,7 +381,6 @@ body.loading{overflow:hidden}
   </div>
 </section>
 
-
 <!-- 5A. KREATOR KEBABA — interactive builder + WhatsApp order -->
 <section class="builder-sec" id="kreator">
   <div class="wrap">
@@ -446,26 +444,6 @@ body.loading{overflow:hidden}
 </section>
 
 <!-- 5. PINNED STORY -->
-<section class="story" id="historia">
-  <div class="story-pin" id="storyPin">
-    <div class="wrap">
-      <div>
-        <span class="tag">Jak robimy kebaba</span>
-        <div class="story-steps">
-          <div class="step on" data-step="0"><div class="k">01</div><h3>MARYNUJEMY NOCĄ</h3><p>Mięso trafia do marynaty z przypraw na całą noc. Rano jest gotowe na ruszt.</p></div>
-          <div class="step" data-step="1"><div class="k">02</div><h3>ŚCINAMY Z OGNIA</h3><p>Kucharz ścina mięso cienkimi płatami prosto z pionowego rusztu — zawsze na bieżąco, nigdy z wyprzedzeniem.</p></div>
-          <div class="step" data-step="2"><div class="k">03</div><h3>PODAJEMY OD RAZU</h3><p>Świeże warzywa, ciepłe pieczywo i własny sos. Od rusztu na Twój stół w kilka minut.</p></div>
-        </div>
-        <div class="story-dots"><i class="on"></i><i></i><i></i></div>
-      </div>
-      <div class="story-visual">
-        <img id="sv0" src="assets/dish-rozen.jpg" alt="Rożen z mięsem — zdjęcie prawdziwe">
-        <img id="sv1" src="assets/dish-rollo.jpg" alt="Rollo Sufi — zdjęcie prawdziwe" loading="lazy">
-        <img id="sv2" src="assets/dish-talerz.jpg" alt="Talerz Sufi — zdjęcie prawdziwe" loading="lazy">
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- 6. SPECIALS -->
 <section id="promocje">
@@ -477,7 +455,6 @@ body.loading{overflow:hidden}
     </div>
   </div>
 </section>
-
 
 <!-- 6B. DOSTAWA — delivery service -->
 <section class="dostawa-sec" id="dostawa">
@@ -634,15 +611,6 @@ body.loading{overflow:hidden}
     var to = parseFloat(el.dataset.to), dec = parseInt(el.dataset.dec || '0', 10), obj = { v: 0 };
     ScrollTrigger.create({ trigger: el, start: 'top 90%', once: true, onEnter: function(){ gsap.to(obj, { v: to, duration: 1.7, ease: 'power2.out', onUpdate: function(){ el.textContent = obj.v.toFixed(dec).replace('.', ','); } }); } });
   });
-  // pinned story: smoother scrub (scrub 1) + dots + image crossfade/scale
-  var steps = gsap.utils.toArray('.step'), dots = document.querySelectorAll('.story-dots i');
-  gsap.timeline({ scrollTrigger: { trigger: '#storyPin', start: 'top top', end: '+=1500', pin: true, scrub: 1,
-    onUpdate: function(self){
-      var idx = Math.min(2, Math.floor(self.progress * 3));
-      steps.forEach(function(s, i){ s.classList.toggle('on', i === idx); });
-      dots.forEach(function(d, i){ d.classList.toggle('on', i === idx); });
-      for (var i = 0; i < 3; i++) { gsap.to('#sv' + i, { opacity: i === idx ? 1 : 0, scale: i === idx ? 1 : 1.12, duration: .5, overwrite: 'auto' }); }
-    } } }).to({}, { duration: 1 });
   // magnetic primary buttons (desktop)
   if (window.matchMedia('(pointer: fine)').matches) {
     document.querySelectorAll('.btn-red, .btn-green').forEach(function(b){
